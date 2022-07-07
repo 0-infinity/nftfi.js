@@ -43,7 +43,7 @@ export default {
     const network = await provider.getNetwork();
     const pk = options?.ethereum?.account?.privateKey;
     const address = options?.ethereum?.account?.address || ethersjs.utils.computeAddress(pk);
-    const signer = !pk ? await provider.getSigner(address) : new ethersjs.Wallet(pk, provider);
+    const signer = options?.dependencies?.signer
     const account = new Account({ address, signer });
     const http = new Http({ axios });
     const utils = options?.dependencies?.utils || new Utils({ ethers, BN, Date, Math, Number, web3 });
